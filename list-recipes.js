@@ -26,7 +26,7 @@ $(document).ready(function() {
       url: url
     });
 
-    listOfRecipes += '<li><a href="recipe.php#' + anchor + '">' + name + '</a></li>';
+    listOfRecipes += '<li><a href="recipe.html#' + anchor + '">' + name + '</a></li>';
   }
 
   // add recipes to page
