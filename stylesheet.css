@@ -46,6 +46,10 @@ html.dark-mode-loading body {
   background-color: #1a1a1a;
   color:            #e0e0e0;
 }
+html.dark-mode-loading #titleBar {
+  background-color: #1a1a1a;
+  border-bottom-color: #444;
+}
 body.dark-mode a, body.dark-mode a:link, body.dark-mode a:visited {
   color: #e0e0e0;
 }
