@@ -25,8 +25,15 @@ $(document).ready(function() {
       anchor: anchor,
       url: url
     });
+  }
 
-    listOfRecipes += '<li><a href="recipe.html#' + anchor + '">' + name + '</a></li>';
+  // sort recipes alphabetically by name
+  allRecipes.sort((a, b) => a.name.localeCompare(b.name));
+
+  // build list of recipes HTML
+  for (let i = 0; i < allRecipes.length; i++) {
+    let recipe = allRecipes[i];
+    listOfRecipes += '<li><a href="recipe.html#' + recipe.anchor + '">' + recipe.name + '</a></li>';
   }
 
   // add recipes to page
