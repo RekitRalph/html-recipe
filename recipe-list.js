@@ -86,5 +86,6 @@ let files = [
   "flour-tortillas.md",
   "carnitas-with-salsa-verde.md",
   "chocolate-chip-cookies.md",
-  "queso-dip.md"
+  "queso-dip.md",
+  "smores-bars.md"
 ];

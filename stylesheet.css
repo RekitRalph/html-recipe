@@ -237,6 +237,9 @@ ol {
 ol li {
   margin-left: 1.05em;
 }
+#steps ol li {
+  margin-bottom: .8em;
+}
 
 #ingredients ul, #notes ul, #help ul, #basedon ul, #toc ul {
   list-style: square outside;
