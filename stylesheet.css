@@ -16,7 +16,7 @@ html, body {
   background-color: white;
   color:            black;
 
-  font-family:      'Fira Sans', sans-serif;
+  font-family:      'Atkinson Hyperlegible', sans-serif;
   font-size:        18px;
 
   transition:       background-color 0.3s ease, color 0.3s ease;
@@ -268,7 +268,7 @@ ol li {
   max-width:        500px;
   margin:           0.7em auto 2em auto;
   padding:          0.8em 1em;
-  font-family:      'Fira Sans', sans-serif;
+  font-family:      'Atkinson Hyperlegible', sans-serif;
   font-size:        1em;
   border:           2px solid rgb(200,200,200);
   border-radius:    4px;
