@@ -1,106 +1,153 @@
 <!doctype html>
 <html profile="http://www.w3.org/2005/10/profile">
-	<head>
-		<title>Recipe Book</title>
+    <head>
+        <title>Recipe Book</title>
 
-		<!-- basics -->
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-		<link rel="icon" type="image/png" href="images/favicon.png">
-		
-		<!-- font and styles -->
-		<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-		<link href="stylesheet.css" rel="stylesheet" type="text/css">
+        <!-- basics -->
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1"
+        />
+        <link rel="icon" type="image/png" href="images/favicon.png" />
 
-		<script>
-			// RECIPE OPTIONS
-			// below are some options to customize how your recipes appear
-			// (these are mostly things that folks might want to change, but
-			// of course you can customize the code too)
+        <!-- font and styles -->
+        <link
+            href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+            rel="stylesheet"
+        />
+        <link href="stylesheet.css" rel="stylesheet" type="text/css" />
 
-			// help urls to include (will be listed in the order below)
-			// label = text displayed
-			// url = template url (put <name> where the search term
-			//       goes, it will be auto-added later)
-			let yelpLocation = 'Bloomfield, NJ';  // no need for fancy formatting, just do it like this
-			let helpUrls = [
-			  { label: 'Image search', url: 'https://www.google.com/search?q=' + '<name>' + '&tbm=isch' },
-			  { label: 'Serious Eats', url: 'https://www.seriouseats.com/search?q=' + '<name>' + '&site=recipes' },
-			  { label: 'More recipes', url: 'https://www.google.com/search?q=' + '<name>' + '+recipe'},
-			  { label: 'Yelp (takeout pls)', url: 'https://www.yelp.com/search?find_loc=' + yelpLocation + '&find_desc=' + '<name>' }
-			];
+        <script>
+            // RECIPE OPTIONS
+            // below are some options to customize how your recipes appear
+            // (these are mostly things that folks might want to change, but
+            // of course you can customize the code too)
 
-			// look in a folder called 'images' for an image to display
-			// at the top of the recipe?
-			// (must be named the same thing as the recipe and have a .jpg ext)
-			// (ex: aloo-matar.md would have an image aloo-matar.jpg)
-			// will fail gracefully if an image doesn't exist, but you can
-			// turn it off entirely if you want
-			let lookForHeroImage = true;
+            // help urls to include (will be listed in the order below)
+            // label = text displayed
+            // url = template url (put <name> where the search term
+            //       goes, it will be auto-added later)
+            let yelpLocation = "Bloomfield, NJ"; // no need for fancy formatting, just do it like this
+            let helpUrls = [
+                {
+                    label: "Image search",
+                    url:
+                        "https://www.google.com/search?q=" +
+                        "<name>" +
+                        "&tbm=isch",
+                },
+                {
+                    label: "Serious Eats",
+                    url:
+                        "https://www.seriouseats.com/search?q=" +
+                        "<name>" +
+                        "&site=recipes",
+                },
+                {
+                    label: "More recipes",
+                    url:
+                        "https://www.google.com/search?q=" +
+                        "<name>" +
+                        "+recipe",
+                },
+                {
+                    label: "Yelp (takeout pls)",
+                    url:
+                        "https://www.yelp.com/search?find_loc=" +
+                        yelpLocation +
+                        "&find_desc=" +
+                        "<name>",
+                },
+            ];
 
-			// turn text-only urls to links in these sections
-			// (in other sections, markdown links will work as normal)
-			let autoUrlSections = [ 'basedon' ];
+            // look in a folder called 'images' for an image to display
+            // at the top of the recipe?
+            // (must be named the same thing as the recipe and have a .jpg ext)
+            // (ex: aloo-matar.md would have an image aloo-matar.jpg)
+            // will fail gracefully if an image doesn't exist, but you can
+            // turn it off entirely if you want
+            let lookForHeroImage = true;
 
-			// trim display text for long urls in 'based on' section
-			// ex:           https://www.seriouseats.com/recipes/2012/01/aloo-matar.html
-			// would become: https://www.seriouseats.com
-			let shortenURLs = false;
-		</script>
+            // turn text-only urls to links in these sections
+            // (in other sections, markdown links will work as normal)
+            let autoUrlSections = ["basedon"];
 
-		<!-- showdown (markdown parser) -->
-		<!-- https://github.com/showdownjs -->
-		<script src="https://cdn.rawgit.com/showdownjs/showdown/1.9.0/dist/showdown.min.js"></script>
+            // trim display text for long urls in 'based on' section
+            // ex:           https://www.seriouseats.com/recipes/2012/01/aloo-matar.html
+            // would become: https://www.seriouseats.com
+            let shortenURLs = false;
+        </script>
 
-		<!-- jquery -->
-		<!-- loads the recipes and adds the selected one below -->
-		<script
-			src="https://code.jquery.com/jquery-3.3.1.min.js"
-			integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-			crossorigin="anonymous">
-		</script>
+        <!-- showdown (markdown parser) -->
+        <!-- https://github.com/showdownjs -->
+        <script src="https://cdn.rawgit.com/showdownjs/showdown/1.9.0/dist/showdown.min.js"></script>
 
-		<!-- prevent dark mode flash -->
-		<script>
-			if (localStorage.getItem('darkMode') === 'enabled') {
-				document.documentElement.classList.add('dark-mode-loading');
-			}
-		</script>
-	</head>
+        <!-- jquery -->
+        <!-- loads the recipes and adds the selected one below -->
+        <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"
+        ></script>
 
-	<body>
-		<!-- title bar with home button and dark mode toggle -->
-		<div id="titleBar">
-			<a href="index.html" id="homeButton">
-				<svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-					<path fill="currentColor" d="M280.37 148.26L96 300.11V464a16 16 0 0 0 16 16l112.06-.29a16 16 0 0 0 15.92-16V368a16 16 0 0 1 16-16h64a16 16 0 0 1 16 16v95.64a16 16 0 0 0 16 16.05L464 480a16 16 0 0 0 16-16V300L295.67 148.26a12.19 12.19 0 0 0-15.3 0zM571.6 251.47L488 182.56V44.05a12 12 0 0 0-12-12h-56a12 12 0 0 0-12 12v72.61L318.47 43a48 48 0 0 0-61 0L4.34 251.47a12 12 0 0 0-1.6 16.9l25.5 31A12 12 0 0 0 45.15 301l235.22-193.74a12.19 12.19 0 0 1 15.3 0L530.9 301a12 12 0 0 0 16.9-1.6l25.5-31a12 12 0 0 0-1.7-16.93z"></path>
-				</svg>
-				Home
-			</a>
-			<button id="darkModeToggle" aria-label="Toggle dark mode">
-				<img src="images/dark-mode.png" alt="Switch to dark mode" class="sun">
-				<img src="images/light-mode.png" alt="Switch to light mode" class="moon">
-			</button>
-		</div>
+        <!-- prevent dark mode flash -->
+        <script>
+            if (localStorage.getItem("darkMode") === "enabled") {
+                document.documentElement.classList.add("dark-mode-loading");
+            }
+        </script>
+    </head>
 
-		<div id="wrapper" class="recipe">
+    <body>
+        <!-- title bar with home button and dark mode toggle -->
+        <div id="titleBar">
+            <a href="index.html" id="homeButton">
+                <svg
+                    aria-hidden="true"
+                    focusable="false"
+                    role="img"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 576 512"
+                >
+                    <path
+                        fill="currentColor"
+                        d="M280.37 148.26L96 300.11V464a16 16 0 0 0 16 16l112.06-.29a16 16 0 0 0 15.92-16V368a16 16 0 0 1 16-16h64a16 16 0 0 1 16 16v95.64a16 16 0 0 0 16 16.05L464 480a16 16 0 0 0 16-16V300L295.67 148.26a12.19 12.19 0 0 0-15.3 0zM571.6 251.47L488 182.56V44.05a12 12 0 0 0-12-12h-56a12 12 0 0 0-12 12v72.61L318.47 43a48 48 0 0 0-61 0L4.34 251.47a12 12 0 0 0-1.6 16.9l25.5 31A12 12 0 0 0 45.15 301l235.22-193.74a12.19 12.19 0 0 1 15.3 0L530.9 301a12 12 0 0 0 16.9-1.6l25.5-31a12 12 0 0 0-1.7-16.93z"
+                    ></path>
+                </svg>
+                Home
+            </a>
+            <button id="darkModeToggle" aria-label="Toggle dark mode">
+                <img
+                    src="images/dark-mode.png"
+                    alt="Switch to dark mode"
+                    class="sun"
+                />
+                <img
+                    src="images/light-mode.png"
+                    alt="Switch to light mode"
+                    class="moon"
+                />
+            </button>
+        </div>
 
-			<!-- recipe (details inserted with js) -->
-			<section id="heroimage"></section>
-			<section id="title"></section>
-			<section id="info"></section>
-			<section id="ingredients"></section>
-			<section id="steps"></section>
-			<hr />
-			<section id="notes"></section>
-			<section id="help"></section>
-			<section id="basedon"></section>
-		</div>
-	</body>
+        <div id="wrapper" class="recipe">
+            <!-- recipe (details inserted with js) -->
+            <section id="heroimage"></section>
+            <section id="title"></section>
+            <section id="info"></section>
+            <section id="ingredients"></section>
+            <section id="steps"></section>
+            <hr />
+            <section id="notes"></section>
+            <section id="help"></section>
+            <section id="basedon"></section>
+        </div>
+    </body>
 
-	<!-- parses and displays recipe -->
-	<script src="utils.js"></script>
-	<script src="create-recipe.js"></script>
-	<script src="dark-mode.js"></script>
+    <!-- parses and displays recipe -->
+    <script src="utils.js"></script>
+    <script src="create-recipe.js"></script>
+    <script src="dark-mode.js"></script>
+    <script src="wake-lock.js"></script>
 </html>
-
